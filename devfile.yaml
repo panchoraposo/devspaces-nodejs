@@ -26,16 +26,16 @@ commands:
     exec:
       component: nodejs
       commandLine: npm install
-      workingDir: .
+      workingDir: /project/nodejs-greetings
     
   - id: run
     exec:
       component: nodejs
       commandLine: node index.js
-      workingDir: .
+      workingDir: /project/nodejs-greetings
 
   - id: deploy
     exec:
       component: nodejs
       commandLine: npm run openshift
-      workingDir: .
+      workingDir: /project/nodejs-greetings
