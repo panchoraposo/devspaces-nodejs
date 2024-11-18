@@ -7,44 +7,50 @@ attributes:
   memoryRequest: 512Mi
   memoryLimit: 1Gi
 components:
-  - name: nodejs
+  - name: runtime
     container:
       image: registry.redhat.io/ubi9/nodejs-20
       command: ["tail", "-f", "/dev/null"]
       memoryLimit: 1024Mi
       mountSources: true
       endpoints:
-        - name: http-3000
+        - name: https-node
           targetPort: 3000
           protocol: https
+        - exposure: none
+          name: debug
+          targetPort: 5858
 
 commands:
   - id: install
     exec:
-      component: nodejs
+      component: runtime
       commandLine: npm install
-      workingDir: /opt/app-root/src/
+      workingDir: ${PROJECT_SOURCE}
       group:
         kind: build
+        isDefault: true
     
   - id: run
     exec:
-      component: nodejs
+      component: runtime
       commandLine: node index.js
-      workingDir: /opt/app-root/src/
+      workingDir: ${PROJECT_SOURCE}
       group:
         kind: run
+        isDefault: true
 
   - id: deploy
     exec:
-      component: nodejs
+      component: runtime
       commandLine: npm run openshift
-      workingDir: /opt/app-root/src/
+      workingDir: ${PROJECT_SOURCE}
       group:
         kind: deploy
+        isDefault: true
 
   - id: test
     exec:
-      component: nodejs
+      component: runtime
       commandLine: ls -la
-      workingDir: /opt/app-root/src/
+      workingDir: ${PROJECT_SOURCE}
