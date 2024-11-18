@@ -13,7 +13,6 @@ components:
       command: ["tail", "-f", "/dev/null"]
       memoryLimit: 1024Mi
       mountSources: true
-      sourceMapping: /project
       endpoints:
         - name: http-3000
           targetPort: 3000
@@ -24,7 +23,7 @@ commands:
     exec:
       component: nodejs
       commandLine: npm install
-      workingDir: /project/src
+      workingDir: /opt/app-root/src/
       group:
         kind: build
     
@@ -32,7 +31,7 @@ commands:
     exec:
       component: nodejs
       commandLine: node index.js
-      workingDir: /project/src
+      workingDir: /opt/app-root/src/
       group:
         kind: run
 
@@ -40,6 +39,6 @@ commands:
     exec:
       component: nodejs
       commandLine: npm run openshift
-      workingDir: /project/src
+      workingDir: /opt/app-root/src/
       group:
         kind: deploy
