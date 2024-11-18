@@ -46,5 +46,5 @@ commands:
   - id: test
     exec:
       component: nodejs
-      commandLine: pwd && ls
+      commandLine: ls -la
       workingDir: /opt/app-root/src/
