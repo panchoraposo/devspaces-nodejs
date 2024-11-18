@@ -6,10 +6,10 @@ metadata:
 attributes:
   memoryRequest: 512Mi
   memoryLimit: 1Gi
-parent:
-  id: nodejs
-  version: 2.2.0
-  registryUrl: "https://registry.devfile.io"
+#parent:
+#  id: nodejs
+#  version: 2.2.0
+#  registryUrl: "https://registry.devfile.io"
 components:
   - name: nodejs
     container:
