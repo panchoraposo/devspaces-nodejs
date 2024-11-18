@@ -26,7 +26,7 @@ commands:
     exec:
       component: runtime
       commandLine: npm install
-      workingDir: ${PROJECT_SOURCE}
+      workingDir: ${PROJECT_SOURCE}/src
       group:
         kind: build
         isDefault: true
@@ -35,7 +35,7 @@ commands:
     exec:
       component: runtime
       commandLine: node index.js
-      workingDir: ${PROJECT_SOURCE}
+      workingDir: ${PROJECT_SOURCE}/src
       group:
         kind: run
         isDefault: true
@@ -44,7 +44,7 @@ commands:
     exec:
       component: runtime
       commandLine: npm run openshift
-      workingDir: ${PROJECT_SOURCE}
+      workingDir: ${PROJECT_SOURCE}/src
       group:
         kind: deploy
         isDefault: true
