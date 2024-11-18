@@ -42,3 +42,9 @@ commands:
       workingDir: /opt/app-root/src/
       group:
         kind: deploy
+
+  - id: test
+    exec:
+      component: nodejs
+      commandLine: pwd && ls
+      workingDir: /opt/app-root/src/
