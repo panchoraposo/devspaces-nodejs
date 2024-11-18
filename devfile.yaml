@@ -6,36 +6,39 @@ metadata:
 attributes:
   memoryRequest: 512Mi
   memoryLimit: 1Gi
-#parent:
-#  id: nodejs
-#  version: 2.2.0
-#  registryUrl: "https://registry.devfile.io"
 components:
   - name: nodejs
     container:
       image: registry.redhat.io/ubi9/nodejs-20
+      command: ["tail", "-f", "/dev/null"]
       memoryLimit: 1024Mi
       mountSources: true
-      sourceMapping: /project
       endpoints:
         - name: http-3000
           targetPort: 3000
+          protocol: https
 
 commands:
   - id: install
     exec:
       component: nodejs
       commandLine: npm install
-      workingDir: /project/nodejs-greetings
+      workingDir: ${PROJECTS_ROOT}/nodejs-greetings
+      group:
+        kind: build
     
   - id: run
     exec:
       component: nodejs
       commandLine: node index.js
-      workingDir: /project/nodejs-greetings
+      workingDir: ${PROJECTS_ROOT}/nodejs-greetings
+      group:
+        kind: run
 
   - id: deploy
     exec:
       component: nodejs
       commandLine: npm run openshift
-      workingDir: /project/nodejs-greetings
+      workingDir: ${PROJECTS_ROOT}/nodejs-greetings
+      group:
+        kind: deploy
