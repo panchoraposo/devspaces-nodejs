@@ -3,6 +3,18 @@ metadata:
   name: nodejs-greetings
   language: "JavaScript"
   projectType: "Node.js"
+attributes:
+  vscode:
+    extensions:
+      # List of extensions to install in the VSCode workspace
+      - ms-vscode.vscode-node-azure-pack  # Node.js Azure Pack
+      - dbaeumer.vscode-eslint            # ESLint for linting JavaScript
+      - eamodio.gitlens                   # GitLens for enhanced Git integration
+      - redhat.vscode-yaml                # YAML extension
+      - ms-vsliveshare.vsliveshare        # Live Share for collaboration
+      - ms-azuretools.vscode-docker       # Docker extension for working with containers
+      - eamodio.toggle-line-comment       # Quick comment/uncomment lines
+      - redhat.vscode-openshift-connector # OpenShift connector
 components:
   - name: runtime
     container:

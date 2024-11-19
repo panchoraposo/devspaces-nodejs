@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "redhat.vscode-openshift-connector"
+        "redhat.vscode-openshift-connector",
+        "dbaeumer.vscode-eslint",
+        "redhat.vscode-yaml"
     ]
 }
