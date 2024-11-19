@@ -5,7 +5,9 @@
   "scripts": {
     "openshift": "nodeshift --expose --dockerImage=registry.redhat.io/ubi9/nodejs-20",
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npm run lint",
+    "nodemon": "npx nodemon index.js"
   },
   "author": "",
   "license": "ISC",
