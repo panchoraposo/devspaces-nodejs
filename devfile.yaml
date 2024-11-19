@@ -34,6 +34,10 @@ components:
           value: development
         - name: PORT
           value: "3000"
+  # Define the volume used for caching dependencies
+  volumes:
+    - name: app-cache
+      ephemeral: true  # Ephemeral volumes are temporary, use persistent for permanent storage
 commands:
   - id: lint
     exec:
