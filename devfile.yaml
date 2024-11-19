@@ -45,7 +45,7 @@ commands:
   - id: start-with-nodemon
     exec:
       component: runtime
-      commandLine: npm run nodemon index.js
+      commandLine: npm run nodemon
       workingDir: ${PROJECT_SOURCE}/src
       group:
         kind: run
