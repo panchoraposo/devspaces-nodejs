@@ -1,17 +1,22 @@
-schemaVersion: 2.2.2
+schemaVersion: 2.2.0
 metadata:
   name: nodejs-greetings
   language: "JavaScript"
   projectType: "Node.js"
-attributes:
-  memoryRequest: 512Mi
-  memoryLimit: 1Gi
 components:
+  - name: vscode-extensions
+    attributes:
+      vscode.extensions:
+        - dbaeumer.vsciode-eslint
+        - eg2.vscode-npm-script
+        - esbenp.prettier-vscode
   - name: runtime
     container:
       image: registry.redhat.io/ubi9/nodejs-20
       command: ["tail", "-f", "/dev/null"]
-      memoryLimit: 1024Mi
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      sourceMapping: /projects
       mountSources: true
       endpoints:
         - name: https-node
@@ -19,10 +24,46 @@ components:
           protocol: https
         - exposure: none
           name: debug
-          targetPort: 5858
-
+          targetPort: 9229
+      volumeMounts:
+        - name: app-cache
+          path: /projects/node_modules
+      env:
+        - name: NODE_ENV
+          value: development
+        - name: PORT
+          value: "3000"
 commands:
-  - id: install
+  - id: lint
+    exec:
+      component: runtime
+      commandLine: npm run lint
+      workingDir: ${PROJECT_SOURCE}/src
+      group:
+        kind: build
+
+  - id: run-debug
+    exec:
+      component: runtime
+      commandLine: node --inspect=0.0.0.0:9229 index.js
+      workingDir: ${PROJECT_SOURCE}/src
+      group:
+        kind: run
+
+  - id: start-with-nodemon
+    exec:
+      component: runtime
+      commandLine: npx nodemon index.js
+      workingDir: ${PROJECT_SOURCE}/src
+      group:
+        kind: run
+  
+  - id: format
+    exec:
+      component: runtime
+      commandLine: npm run format
+  
+  - id: install-dependencies
     exec:
       component: runtime
       commandLine: npm install
@@ -54,3 +95,12 @@ commands:
       component: runtime
       commandLine: ls -la
       workingDir: ${PROJECT_SOURCE}
+
+volumes:
+  - name: app-cache
+    size: 1Gi
+events:
+  preStart:
+    - install-dependencies
+  postStart:
+    - run
