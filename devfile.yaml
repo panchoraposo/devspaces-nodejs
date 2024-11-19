@@ -65,7 +65,7 @@ commands:
       commandLine: npm run format
   
   - id: install-dependencies
-    apply:
+    exec:
       component: runtime
       commandLine: npm install
       workingDir: ${PROJECT_SOURCE}/src
@@ -74,7 +74,7 @@ commands:
         isDefault: true
     
   - id: run
-    apply:
+    exec:
       component: runtime
       commandLine: node index.js
       workingDir: ${PROJECT_SOURCE}/src
@@ -97,8 +97,20 @@ commands:
       commandLine: ls -la
       workingDir: ${PROJECT_SOURCE}
 
+  - id: prestart-setup
+    composite:
+      commands:
+        - install-dependencies        
+      parallel: false
+  
+  - id: poststart-setup
+    composite:
+      commands:
+        - run
+      parallel: false
+
 events:
   preStart:
-    - install-dependencies
+    - prestart-setup
   postStart:
-    - run
+    - poststart-setup
