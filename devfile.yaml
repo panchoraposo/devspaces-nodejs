@@ -108,9 +108,3 @@ commands:
       commands:
         - run
       parallel: false
-
-events:
-  preStart:
-    - prestart-setup
-  postStart:
-    - poststart-setup
