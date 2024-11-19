@@ -19,12 +19,17 @@ components:
         - exposure: none
           name: debug
           targetPort: 9229
+      volumeMounts:
+        - name: app-cache
+          path: ${PROJECT_SOURCE}/node-modules
       env:
         - name: NODE_ENV
           value: development
         - name: PORT
           value: "3000"
-  
+  - name: app-cache
+    volume:
+      size: 1Gi
 commands:
   - id: lint
     exec:
