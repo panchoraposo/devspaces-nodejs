@@ -97,9 +97,6 @@ commands:
       commandLine: ls -la
       workingDir: ${PROJECT_SOURCE}
 
-volumes:
-  - name: app-cache
-    size: 1Gi
 events:
   preStart:
     - install-dependencies
