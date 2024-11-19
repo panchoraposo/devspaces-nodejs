@@ -5,11 +5,14 @@ metadata:
   projectType: "Node.js"
 components:
   - name: vscode-extensions
-    attributes:
-      vscode.extensions:
-        - dbaeumer.vsciode-eslint
-        - eg2.vscode-npm-script
-        - esbenp.prettier-vscode
+    plugin:
+      kubernetes:
+        extensions:
+          - ms-vscode.vscode-node-azure-pack  # Node.js Essentials
+          - dbaeumer.vscode-eslint            # ESLint for linting
+          - eamodio.gitlens                   # GitLens for enhanced Git support
+          - redhat.vscode-yaml                # YAML support for configuration files
+          - ms-vsliveshare.vsliveshare        # Live Share for collaboration
   - name: runtime
     container:
       image: registry.redhat.io/ubi9/nodejs-20
