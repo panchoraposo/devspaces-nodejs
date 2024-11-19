@@ -65,7 +65,7 @@ commands:
       commandLine: npm run format
   
   - id: install-dependencies
-    exec:
+    apply:
       component: runtime
       commandLine: npm install
       workingDir: ${PROJECT_SOURCE}/src
@@ -74,7 +74,7 @@ commands:
         isDefault: true
     
   - id: run
-    exec:
+    apply:
       component: runtime
       commandLine: node index.js
       workingDir: ${PROJECT_SOURCE}/src
