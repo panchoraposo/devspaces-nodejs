@@ -140,3 +140,7 @@ dist
 
 # Nodeshift
 tmp/
+
+# Extensions
+.extensions
+.vsix
