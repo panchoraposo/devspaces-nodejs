@@ -3,6 +3,6 @@
         "redhat.vscode-openshift-connector",
         "dbaeumer.vscode-eslint",
         "redhat.vscode-yaml",
-        "mtxr.sqltools"
+        "cweijan.dbclient-jdbc"
     ]
 }
