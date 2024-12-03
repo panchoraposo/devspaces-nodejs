@@ -3,6 +3,6 @@
         "redhat.vscode-openshift-connector",
         "dbaeumer.vscode-eslint",
         "redhat.vscode-yaml",
-        "ms-mssql.mssql"
+        "mtxr.sqltools"
     ]
 }
